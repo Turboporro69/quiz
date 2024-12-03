@@ -25,10 +25,74 @@ const questions = [
             { text: "Apple", correct: false},
             { text: "Amazon", correct: false},
         ]
-    }
+    },
+    {
+        question: "What is Apple's programming language?",
+        answers: [
+            { text: "xCode ", correct: false},
+            { text: "Swift", correct: true},
+            { text: "Java", correct: false},
+            { text: "Bash", correct: false},
+        ]
+    },
+    {
+        question: "Who developed the Python programming language?",
+        answers: [
+            { text: "James Gosling", correct: false },
+            { text: "Guido van Rossum", correct: true },
+            { text: "Brendan Eich", correct: false },
+            { text: "Dennis Ritchie", correct: false },
+        ]
+    },
+    {
+        question: "What programming language is Minecraft written in?",
+        answers: [
+            { text: "Python", correct: false},
+            { text: "Java", correct: true},
+            { text: "Javascript", correct: false},
+            { text: "C#", correct: false},
+        ]
+    },
+    {
+        question: "Which of the following is NOT a primitive data type in Java?",
+        answers: [
+            { text: "int", correct: false },
+            { text: "float", correct: false },
+            { text: "char", correct: false },
+            { text: "String", correct: true },
+        ]
+    },
+    {
+        question: "Which of the following is used for version control?",
+        answers: [
+            { text: "Docker", correct: false },
+            { text: "Git", correct: true },
+            { text: "Webpack", correct: false },
+            { text: "Node.js", correct: false },
+        ]
+    },
+    {
+        question: "What is the primary role of an API?",
+        answers: [
+            { text: "To store data", correct: false },
+            { text: "To provide an interface for interaction between software components", correct: true },
+            { text: "To define the layout of web pages", correct: false },
+            { text: "To compile code", correct: false },
+        ]
+    },
+    {
+    question: "Which symbol is used for comments in Python?",
+    answers: [
+        { text: "//", correct: false },
+        { text: "#", correct: true },
+        { text: "/*", correct: false },
+        { text: "<!-- -->", correct: false },
+    ]
+}
 ];
 
 const questionElement = document.getElementById('question');
+const questionCounterElement = document.getElementById('question-counter');
 const answerButtons = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
 
@@ -55,6 +119,7 @@ function showQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    questionCounterElement.innerHTML = `Question ${questionNo} of ${questions.length}`;
 
     shuffle(currentQuestion.answers); 
     currentQuestion.answers.forEach(answer => {
@@ -68,6 +133,7 @@ function showQuestion() {
         button.addEventListener('click', selectAnswer);
     });
 }
+
 function resetState() {
     nextButton.style.display = 'none';
     while (answerButtons.firstChild) {
